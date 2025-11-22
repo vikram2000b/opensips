@@ -1,4 +1,4 @@
-FROM opensips/opensips:3.4.3-slim
+FROM opensips/opensips:3.4
 
 # Copy OpenSIPS configuration
 COPY config/opensips.cfg /etc/opensips/opensips.cfg
