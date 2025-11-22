@@ -1,0 +1,20 @@
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# AWS credentials (if any)
+.aws/
+credentials

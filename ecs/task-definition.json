@@ -1,0 +1,35 @@
+{
+  "family": "sage-opensips",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["EC2"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "opensips",
+      "image": "YOUR_AWS_ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/sage-opensips:latest",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5060,
+          "hostPort": 5060,
+          "protocol": "udp"
+        },
+        {
+          "containerPort": 5060,
+          "hostPort": 5060,
+          "protocol": "tcp"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/sage-opensips",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "opensips",
+          "awslogs-create-group": "true"
+        }
+      }
+    }
+  ]
+}
