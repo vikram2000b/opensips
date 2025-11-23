@@ -16,4 +16,4 @@ echo "  RTPENGINE_HOST: ${RTPENGINE_HOST}"
 echo "  RTPENGINE_PORT: ${RTPENGINE_PORT}"
 
 # Start OpenSIPS
-exec opensips -f /etc/opensips/opensips.cfg -F
+exec opensips -f /etc/opensips/opensips.cfg -F -m 128
