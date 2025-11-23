@@ -1,4 +1,4 @@
-FROM opensips/opensips:3.4.3-slim
+FROM opensips/opensips:3.4
 
 # Install envsubst for variable substitution
 RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
