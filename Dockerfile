@@ -1,11 +1,18 @@
-FROM opensips/opensips:3.4
+FROM opensips/opensips:3.4.3-slim
 
-# Copy OpenSIPS configuration
-COPY config/opensips.cfg /etc/opensips/opensips.cfg
+# Install envsubst for variable substitution
+RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+
+# Copy OpenSIPS configuration template
+COPY config/opensips.cfg /etc/opensips/opensips.cfg.template
+
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose SIP ports
 EXPOSE 5060/udp
 EXPOSE 5060/tcp
 
-# Run OpenSIPS in foreground
-CMD ["opensips", "-f", "/etc/opensips/opensips.cfg", "-FE"]
+# Use entrypoint script
+ENTRYPOINT ["/entrypoint.sh"]

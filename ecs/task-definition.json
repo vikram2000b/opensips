@@ -21,6 +21,16 @@
           "protocol": "tcp"
         }
       ],
+      "environment": [
+        {
+          "name": "MEDIA_SERVER_HOST",
+          "value": "REPLACE_WITH_YOUR_NLB_DNS"
+        },
+        {
+          "name": "MEDIA_SERVER_PORT",
+          "value": "80"
+        }
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
