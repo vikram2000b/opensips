@@ -9,9 +9,13 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t $REPOSITORY_URI:latest .
+      - export DOCKER_BUILDKIT=1
+      - echo Building the OpenSIPS image...
+      - docker build --platform linux/amd64 -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - echo Building the rtpengine sidecar image...
+      - docker build --platform linux/amd64 -f rtpengine.Dockerfile -t $RTPENGINE_REPOSITORY_URI:latest .
+      - docker tag $RTPENGINE_REPOSITORY_URI:latest $RTPENGINE_REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
     commands:
@@ -19,8 +23,10 @@ phases:
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - docker push $RTPENGINE_REPOSITORY_URI:latest
+      - docker push $RTPENGINE_REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
-      - printf '[{"name":"opensips","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"opensips","imageUri":"%s"},{"name":"rtpengine","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG $RTPENGINE_REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:

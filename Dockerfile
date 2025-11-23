@@ -1,7 +1,8 @@
 FROM opensips/opensips:3.4
 
 # Install envsubst for variable substitution
-RUN apt-get update && apt-get install -y gettext-base && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends gettext-base \
+ && rm -rf /var/lib/apt/lists/*
 
 # Copy OpenSIPS configuration template
 COPY config/opensips.cfg /etc/opensips/opensips.cfg.template
