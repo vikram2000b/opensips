@@ -9,4 +9,4 @@ echo "  MEDIA_SERVER_HOST: ${MEDIA_SERVER_HOST}"
 echo "  MEDIA_SERVER_PORT: ${MEDIA_SERVER_PORT:-80}"
 
 # Start OpenSIPS
-exec opensips -f /etc/opensips/opensips.cfg -FE
+exec opensips -f /etc/opensips/opensips.cfg -F
