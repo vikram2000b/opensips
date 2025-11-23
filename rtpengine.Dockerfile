@@ -64,4 +64,4 @@ RUN rm -rf /src/rtpengine
 EXPOSE 22222/udp 40000-40015/udp
 
 ENTRYPOINT ["/usr/bin/rtpengine"]
-CMD ["--foreground", "--listen-ng=0.0.0.0:22222", "--log-level=4", "--interface=public/eth0", "--interface=webrtc/eth0", "--port-min=40000", "--port-max=40015"]
+CMD ["--foreground", "--listen-ng=0.0.0.0:22222", "--log-level=6", "--interface=public/eth0", "--interface=webrtc/eth0", "--port-min=40000", "--port-max=40015"]
