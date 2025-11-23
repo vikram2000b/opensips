@@ -21,8 +21,8 @@ RUN apt-get update && \
     tar -xzf ${OPENSIPS_VERSION}.tar.gz && \
     cd opensips-${OPENSIPS_VERSION} && \
     # Compile OpenSIPS with required modules
-    make include_modules="db_mysql tlsops presence" && \
-    make install include_modules="db_mysql tlsops presence" && \
+    make include_modules="db_mysql tlsops presence signaling sl tm rr maxfwd textops siputils mi_fifo proto_udp proto_tcp" && \
+    make install include_modules="db_mysql tlsops presence signaling sl tm rr maxfwd textops siputils mi_fifo proto_udp proto_tcp" && \
     # Clean up build dependencies and source
     cd / && \
     rm -rf /tmp/opensips-${OPENSIPS_VERSION} /tmp/${OPENSIPS_VERSION}.tar.gz && \
