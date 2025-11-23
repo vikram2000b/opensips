@@ -61,7 +61,15 @@ RUN ln -s /bin/true /usr/local/bin/pandoc \
 
 RUN rm -rf /src/rtpengine
 
-EXPOSE 22222/udp 30000-30100/udp
+EXPOSE 22222/udp 40000-41000/udp
 
 ENTRYPOINT ["/usr/bin/rtpengine"]
-CMD ["--foreground", "--listen-ng=0.0.0.0:22222", "--log-level=6", "--interface=public/127.0.0.1", "--interface=webrtc/host.docker.internal", "--port-min=30000", "--port-max=30100"]
+CMD [
+  "--foreground",
+  "--listen-ng=0.0.0.0:22222",
+  "--log-level=4",
+  "--interface=public/eth0",
+  "--interface=webrtc/eth0",
+  "--port-min=40000",
+  "--port-max=41000"
+]
